@@ -1,0 +1,11 @@
+import requests
+from bs4 import BeautifulSoup
+res = requests.get("http://www.rockrose.com/residential/property/200-water-street/")
+soup = BeautifulSoup(res.text)
+for item in soup.select('.search'):
+	print "Unit   Rooms    Price"
+	for i in range (1, 11):
+		for j in range (0, 3):	
+			
+			print item.select('tr')[i].select('td')[j].text.strip(),
+		print ""
